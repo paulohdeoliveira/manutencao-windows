@@ -1,0 +1,23 @@
+find-module -name PSWindowsUpdate | install-module
+
+get-executionpolicy
+set-executionpolicy remotesigned
+
+import-module PSWindowsUpdate
+
+get-wulist
+
+############### Ocultar Atualização (impedir instalação da atualização) #######################
+
+hide-windowsupdate -kbarticleid "número kb"
+
+hide-windowsupdate -title "título da atualização"
+
+############# Exibir Atualização (instalar atualização) #################
+
+show-windowsupdate -kbarticleid "numero kb"
+
+show-windowsupdate -kbarticleid "título da atualização"
+
+
+
