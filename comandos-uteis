@@ -1,4 +1,9 @@
-Integridade Sistema
+#### Ativar e Desativar conta Administrador interna ####
+
+net user administrator /activate:yes
+net user administrator /activate:no
+
+#### Integridade Sistema ####
 
 dism /online /cleanup-image /scanhealth
 dism /online /cleanup-image /checkheath
@@ -22,17 +27,17 @@ exemplo de uso:
 
 sfc /scannow /offbootdir=E\ /offwindir=E:\windows
 
-Bitlocker com TPM e PIN
+#### Bitlocker com TPM e PIN ####
 
 manage-bde -protectors -add c: -TPMAndPin
 manage-bde -status
 
-Rodar Windows Defender em Sandbox
+#### Rodar Windows Defender em Sandbox ####
 
 setx /M MP_FORCE_USE_SANDBOX 1  - Ativar sandbox
 setx /M MP_FORCE_USE_SANDBOX 0  - Desativar sandbox 
 
-Exportar Drivers
+#### Exportar Drivers ####
 
 dism /online /export-driver /destination:c:\BKP_DRIVERS
 
@@ -40,7 +45,7 @@ Importar Drivers
 
 dism /online /ADD-Driver /Driver:c:\BKP_DRIVERS
 
-Extrair Índice edição windows
+#### Extrair Índice edição windows ####
 Listar Índices:
 dism /Get-Wiminfo /WimFile:”c:\pasta\install.wim”
 
@@ -51,26 +56,7 @@ Dividir arquivo Install.wim
 
 dism /Split-Image /ImageFile:"c:\tmp\install.wim" /SWMFile:"c:\tmp\install.swm" /FileSize:4000
 
-Desativar Bing da Pesquisa do Menu Iniciar
-
-\HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer
-
-Chave Explorer – DisableSearchBoxSuggestions  (1 – Habilitado, 0 - Desabilitado)
-
-Ativar Windows em Outro Computador 
-Importante: A licença precisa ser Retail, licença OEM não é possível transferir. Verificar se o tipo da licença é Channel: Retail.
-Obter ID da Ativação:
-slmgr /dlv
-Remover a Chave do Produto
-	slmgr /upk Id_de_Ativação
-Instalar a Chave no Outro Computador
-	slmgr /ipk Chave do Windows
-
-Calcular Hash de um arquivo
-
-Get-FileHash "Nome do Arquivo" -Algorithm SHA256 | Format-List
-
-Criar entrada boot sem Hyper-v
+#### Criar entrada boot sem Hyper-v ####
 
 BCDEDIT /COPY {DEFAULT} /D “Windows WMware”
 
@@ -78,11 +64,11 @@ BCDEDIT /SET {ID} HYPERVISORLAUNCHTYPE OFF
 
 bcdedit /set {ID} description "Windows WMware"
 
-Habilitar Hyper-V
+#### Habilitar Hyper-V ####
 
 Enable-WindowsOptionalFeature -Online _FeatureName Microsoft-Hyper-V -All
 
-Excluir Histórico Power-Shell
+#### Excluir Histórico Power-Shell ####
 
 Remove-Item (Get-PSReadlineOption).HistorySavePath
 
