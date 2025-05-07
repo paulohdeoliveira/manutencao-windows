@@ -1,7 +1,7 @@
 #### Ativar e Desativar conta Administrador interna ####
 
-net user administrator /activate:yes
-net user administrator /activate:no
+net user administrator /active:yes
+net user administrator /active:no
 
 #### Integridade Sistema ####
 
